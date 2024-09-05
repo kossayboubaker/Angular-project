@@ -1,0 +1,87 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+}
+
+/* About Sections */
+.about-section {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1000px;
+  background: linear-gradient(to right, #c8ebe8, #adadff);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-section h2 {
+  color: #007bff;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.about-section p,
+.about-section ul {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+.about-section ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.about-section ul li {
+  background:  no-repeat left center;
+  padding-left: 30px;
+  margin-bottom: 10px;
+}
+
+.about-section strong {
+  color: #333;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 1000px;
+  background: linear-gradient(to right, #c8ebe8, #adadff);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.contact-section h2 {
+  color: #007bff;
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+  background-color: #007bff;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Additional custom styles */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .main-container {
+      min-height: 100vh;
+      display: flex;
+      background: linear-gradient(to bottom right, #d1e9f2, #f4c3c3);
+    }
+    .sidebar {
+      width: 180px;
+    }
+    .main-content {
+      flex: 1;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    <!-- Sidebar -->
+    <aside class="sidebar bg-gray-800 text-white p-4">
+      <h2 class="text-xl font-bold mb-4">Sidebar</h2>
+      <ul>
+        <li class="mb-2"><a href="" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/dashboard">Dashboard</a></li>
+        <li class="mb-2"><a href="#" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/product-create">Product create</a></li>
+        <li class="mb-2"><a href="#" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/products-list">Product List</a></li>
+        <li class="mb-2"><a href="#" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/users-list">User List</a></li>
+        <li class="mb-2"><a href="#" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/help">Help</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content -->
+    <div class="flex-1 flex flex-col">
+      <header class="navbar navbar-dark sticky-top bg-gray-800  flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Hello <h3>{{fullName}}</h3></a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-auto rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+        <li></li>
+        <div class="navbar-nav">
+          <div class="nav-item text-nowrap">
+            <a style="background: red; color: #fff; border-radius: 4px; margin: 10px;" class="nav-link px-3 cursor-pointer" (click)="logout()">Sign out</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container-fluid">
+        <!-- Main content -->
+        <main class=" main-content">
+         <!-- Create Product Form -->
+
+         <div class="container mx-auto px-9 py-9">
+          <!-- Main Content -->
+
+          <!-- bouton pour ajouter un produit-->
+
+
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" routerLink="/product-create">Ajouter un produit</button>
+
+            <div class="container mx-auto px-7 py-7 max-w-5xl text-left">
+          <div class="min-w-full bg-gradient-to-t from-green-200 via-blue-300 to-red-300 border border-gray-300 rounded-lg shadow-md mt-6">
+            <h2 class="text-2xl font-bold mb-4 text-center text-black">Liste des Produits</h2>
+            <table class="min-w-full bg-white bg-blue-500 text-black px-4 py-2 rounded mr-2">
+              <thead>
+                <tr class="text-left bg-gray-200 border-b">
+                  <th class="py-2 px-4 text-left">Nom</th>
+                  <th class="py-2 px-4 text-left">Description</th>
+                  <th class="py-2 px-4 text-left">Prix</th>
+                  <th class="py-2 px-4 text-left">Stock</th>
+                  <th class="py-2 px-4 text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products" class="border-b bg-green-200">
+                  <td class="py-2 px-4 text-left">{{ product.name }}</td>
+                  <td class="py-2 px-4 text-left">{{ product.description }}</td>
+                  <td class="py-2 px-4 text-left">{{ product.price }}</td>
+                  <td class="py-2 px-4 text-left">{{ product.stock }}</td>
+                  <td class="py-2 px-4 text-center">
+                    <button
+                      class="text-black bg-yellow-400 font-bold hover:text-blue-700 mr-2 py-1 px-3 rounded border border-blue-500 hover:bg-blue-100"
+                      (click)="selectProduct(product)">
+                      Update Product
+                    </button>
+
+                    <button
+                      class="text-black bg-red-500 hover:text-red-700 font-bold py-1 px-3 rounded border border-red-500 hover:bg-red-100"
+                      (click)="deleteProduct(product.id)">
+                      Delete
+                    </button>
+
+                    <button
+                      class="text-black bg-blue-500 hover:text-blue-700 font-bold py-1 px-3 rounded border border-blue-500 hover:bg-blue-800"
+                      (click)="selectProductById(product.id)">
+                      View Product
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+
+          <!-- Section pour afficher les détails du produit sélectionné -->
+        <!-- Section pour afficher les détails du produit sélectionné -->
+        <div class="max-w-xl bg-gradient-to-t from-green-200 via-blue-300 to-red-300 p-6 rounded-lg shadow-md mt-6" *ngIf="selectedProductById && !isUpdateMode">
+          <h2 class="text-2xl font-bold mb-4 text-center">Détails du Produit</h2>
+          <p><strong>ID:</strong> {{ selectedProductById.id }}</p>
+          <p><strong>Name:</strong> {{ selectedProductById.name }}</p>
+          <p><strong>Description:</strong> {{ selectedProductById.description }}</p>
+          <p><strong>Price:</strong> {{ selectedProductById.price | currency }}</p>
+          <p><strong>Stock:</strong> {{ selectedProductById.stock }}</p>
+        </div>
+          <!-- Update Product Form -->
+          <div class="max-w-xl bg-gradient-to-t from-green-200 via-blue-300 to-red-300 p-6 rounded-lg shadow-md mt-6" *ngIf="selectedProduct">
+            <h2 class="text-2xl font-bold mb-4 text-center">Mettre à Jour le Produit</h2>
+            <form (ngSubmit)="onSubmit()">
+              <div class="form-group mb-4">
+                <label for="name" class="block text-gray-700 font-bold">Nom du Produit:</label>
+                <input type="text" id="name" [(ngModel)]="selectedProduct.name" name="name" class="block w-full border-gray-300 rounded-md shadow-sm font-bold" required />
+              </div>
+              <div class="form-group mb-4">
+                <label for="description" class="block text-gray-700 font-bold">Description:</label>
+                <textarea id="description" [(ngModel)]="selectedProduct.description" name="description" class="block w-full border-gray-300 rounded-md shadow-sm font-bold" required></textarea>
+              </div>
+              <div class="form-group mb-4">
+                <label for="price" class="block text-gray-700 font-bold">Prix:</label>
+                <input type="number" id="price" [(ngModel)]="selectedProduct.price" name="price" class="block w-full border-gray-300 rounded-md shadow-sm font-bold" required />
+              </div>
+              <div class="form-group mb-4">
+                <label for="stock" class="block text-gray-700 font-bold">Quantité en Stock:</label>
+                <input type="number" id="stock" [(ngModel)]="selectedProduct.stock" name="stock" class="block w-full border-gray-300 rounded-md shadow-sm font-bold" required />
+              </div>
+              <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition duration-300">Mettre à Jour</button>
+            </form>
+          </div>
+        </div>
+
+         </div>
+        </main>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    /* Additional custom styles */
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .main-container {
+      min-height: 100vh;
+      display: flex;
+      background: linear-gradient(to bottom right, #d1e9f2, #f4c3c3);
+    }
+    .sidebar {
+      width: 180px;
+    }
+    .main-content {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="main-container">
+    <!-- Sidebar -->
+    <aside class="sidebar bg-gray-800 text-white p-4">
+      <h2 class="text-xl font-bold mb-4">Sidebar</h2>
+      <ul>
+        <li class="mb-2"><a href="" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/dashboard">Dashboard</a></li>
+        <li class="mb-2"><a href="#" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/product-create">product create</a></li>
+        <li class="mb-2"><a href="#" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/products-list">Product List</a></li>
+        <li class="mb-2"><a href="#" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/users-list">User List</a></li>
+        <li class="mb-2"><a href="#" class="text-white hover:bg-blue-700 p-2 rounded" routerLink="/help">Help</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main content -->
+    <div class="flex-1 flex flex-col">
+      <header class="navbar navbar-dark sticky-top bg-gray-800  flex-md-nowrap p-0 shadow">
+        <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Hello <h3>{{fullName}}</h3></a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <input class="form-control form-control-dark w-auto rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+        <li></li>
+        <div class="navbar-nav">
+          <div class="nav-item text-nowrap">
+            <a style="background: red; color: #fff; border-radius: 4px; margin: 10px;" class="nav-link px-3 cursor-pointer" (click)="logout()">Sign out</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="container-fluid">
+        <!-- Main content -->
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 main-content">
+         <!-- Create Product Form -->
+<div class="container mx-auto px-2 py-2">
+  <div class="max-w-xl bg-gradient-to-r from-green-200 via-blue-300 to-red-300 p-6 rounded-lg shadow-md mt-6 mb-3 ">
+    <h2 class="text-2xl font-bold mb-4 text-center">Create Product</h2>
+    <form (ngSubmit)="createProduct()" class="space-y-6">
+      <div class="form-group">
+        <label for="name" class="block text-gray-700  font-bold space-y-7">Name:</label>
+        <input id="name" [(ngModel)]="newProduct.name" name="name" required class="mt-1 block w-full border-gray-300 rounded-md shadow-sm  font-bold" />
+      </div>
+      <div class="form-group">
+        <label for="description" class="block text-gray-700  font-bold">Description:</label>
+        <textarea id="description" [(ngModel)]="newProduct.description" name="description" required class="mt-1 block w-full font-bold border-gray-300 rounded-md shadow-sm"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="price" class="block text-gray-700  font-bold">Price:</label>
+        <input id="price" [(ngModel)]="newProduct.price" name="price" type="number" required class="mt-1 block w-full  font-bold border-gray-300 rounded-md shadow-sm" />
+      </div>
+      <div class="form-group">
+        <label for="stock" class="block text-gray-700  font-bold">Stock:</label>
+        <input id="stock" [(ngModel)]="newProduct.stock" name="stock" type="number" required class="mt-1 block w-full font-bold border-gray-300 rounded-md shadow-sm" />
+      </div>
+      <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-green-600 transition duration-300 text-center">Create Product</button>
+    </form>
+  </div>
+</div>
+        </main>
+      </div>
+
+      <app-footer></app-footer>
+    </div>
+  </div>
+
+</body>
+</html>

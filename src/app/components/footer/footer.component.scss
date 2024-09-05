@@ -1,0 +1,26 @@
+.social-menu {
+  display: flex;
+  flex-wrap: wrap; /* Permet au contenu de passer à la ligne suivante */
+  justify-content: right;
+   /* Centre le contenu horizontalement */
+}
+
+.social-menu ul {
+  list-style-type: none; /* Enlève les puces */
+  padding: 0; /* Enlève le padding */
+  margin: 0; /* Enlève la marge */
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.social-menu li {
+  margin: 2px; /* Espace entre les éléments */
+    text-align: center; /* Centre le texte (les icônes) dans chaque élément */
+}
+
+
+
+.social-menu i {
+  font-size: 18px; /* Taille des icônes */
+}
